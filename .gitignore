@@ -1,0 +1,10 @@
+venv/
+
+data/
+
+.DS_Store
+.env
+*.pyc
+*.pkl
+.ipynb_checkpoints/
+out.gif
