@@ -195,8 +195,8 @@ def _writeGifToFile(fp, images, durations, loops):
 
 ## Exposed functions
 
-def writeGif(filename, images, duration=0.1, loops=0, dither=1):
-    """ writeGif(filename, images, duration=0.1, loops=0, dither=1)
+def writeGif(fp, images, duration=0.1, loops=0, dither=1):
+    """ writeGif(fp, images, duration=0.1, loops=0, dither=1)
     Write an animated gif from the specified images.
     images should be a list of numpy arrays of PIL images.
     Numpy images of type float should have pixels between 0 and 1.
@@ -243,16 +243,7 @@ def writeGif(filename, images, duration=0.1, loops=0, dither=1):
     else:
         durations = [duration for im in images2]
 
-
-    # open file
-    fp = open(filename, 'wb')
-
-    # write
-    try:
-        n = _writeGifToFile(fp, images2, durations, loops)
-        print(n, 'frames written')
-    finally:
-        fp.close()
+    return _writeGifToFile(fp, images2, durations, loops)
 
 
 def readGif(filename):
