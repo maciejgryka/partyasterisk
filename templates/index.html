@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href='http://cdn.jsdelivr.net/g/primer@2.7.0' rel='stylesheet' type='text/css'>
+    <style type="text/css">
+      body {
+        margin-top: 100px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>party*</h1>
+    {% block content %}
+      <form action="" method="POST" enctype="multipart/form-data">
+        <input id="input-file" type="file" name="file"></input>
+        <input class="btn" type="submit" value="Go party!"></input>
+      </form>
+    {% endblock content %}
+  </body>
+</html>
