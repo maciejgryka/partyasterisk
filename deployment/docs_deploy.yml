@@ -1,0 +1,16 @@
+---
+- hosts: '{{ hosts }}'
+  user: '{{ project_name }}'
+  vars_files:
+    - vars.yml
+  gather_facts: false
+
+  handlers:
+    - include: handlers.yml
+
+  tasks:
+  - name: create docs root directory
+    file: path={{ docs_root }} state=directory owner={{ project_name }}
+
+  - name: copy the docs over to the server
+    copy: src={{ docs_root_local }} dest={{ docs_root }}

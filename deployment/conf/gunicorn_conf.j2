@@ -1,0 +1,25 @@
+#!/bin/bash
+
+NAME='{{ project_name }}'
+SOCKFILE='{{ gunicorn_socket }}'
+USER='{{ project_name }}'
+GROUP=webapps
+NUM_WORKERS={{ gunicorn_workers }}
+
+echo "Starting $NAME as `whoami`"
+
+# Activate the virtual environment
+source '{{ project_venv }}/bin/activate'
+
+# Create the run directory if it doesn't exist
+RUNDIR=$(dirname $SOCKFILE)
+test -d $RUNDIR || mkdir -p $RUNDIR
+
+# Start your Django Unicorn
+# Programs meant to be run under supervisor should not daemonize themselves (do not use --daemon)
+exec gunicorn {{ project_name }}:app \
+  --name $NAME \
+  --workers $NUM_WORKERS \
+  --user=$USER --group=$GROUP \
+  --log-level=debug \
+  --bind=unix:$SOCKFILE

@@ -1,0 +1,12 @@
+---
+- name: reload sshd
+  service: name=ssh state=reloaded
+
+- name: reboot
+  command: /sbin/reboot -h now
+
+- name: reload nginx
+  service: name=nginx state=reloaded
+
+- name: restart nginx
+  service: name=nginx state=restarted
