@@ -1,10 +1,14 @@
 venv/
 
 data/
+uploads/*.png
+uploads/*.jpg
+uploads/*.jpeg
+uploads/*.gif
+.ipynb_checkpoints/
 
 .DS_Store
 .env
 *.pyc
 *.pkl
-.ipynb_checkpoints/
 out.gif
