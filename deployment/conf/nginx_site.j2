@@ -28,17 +28,13 @@ server {
     location /static/ {
         gzip            on;
         autoindex       on;
-        alias           '{{ project_root }}/';
-        access_log      off;
-        log_not_found   off;
+        alias           '{{ project_repo_path }}/static/';
         expires 30d;
     }
 
     location /uploads/ {
         autoindex on;
-        alias           '{{ project_root }}/';
-        access_log      off;
-        log_not_found   off;
+        alias           '{{ project_repo_path }}/uploads/';
     }
 
 #    location /robots.txt {
