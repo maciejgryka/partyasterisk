@@ -6,13 +6,54 @@
     <link href='http://cdn.jsdelivr.net/g/primer@2.7.0' rel='stylesheet' type='text/css'>
     <style type="text/css">
       body {
-        margin-top: 100px;
         text-align: center;
+        margin-top: 100px;
+        font-size: 16px;
+        line-height: 1.6rem;
+      }
+
+      #nav {
+        margin-top: -100px;
+        text-align: right;
+      }
+      #nav li {
+        list-style: none;
+        padding: 15px;
+      }
+
+      a, a:active, a:hover, a:visited {
+        color: inherit;
+        background-color: #ccc;
+        padding: 3px 3px 2px 2px;
+        text-decoration: none;
+      }
+
+      #home-link, #home-link:active, #home-link:hover, #home-link:visited {
+        background-color: inherit;
+        padding: 0;
+      }
+
+      #about-steps {
+        margin-top: 100px;
+        margin-bottom: 100px;
+      }
+
+      .page-content {
+        margin-top: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 80%;
+        max-width: 600px;
       }
     </style>
   </head>
   <body>
-    <h1>party*</h1>
+    <div id="nav">
+      <ul>
+        <li><a href="{{ url_for('about') }}">about</a></li>
+      </ul>
+    </div>
+    <h1><a id="home-link" href="/">party*</a></h1>
     {% block content %}
       <form action="" method="POST" enctype="multipart/form-data">
         <input id="input-file" type="file" name="file" />

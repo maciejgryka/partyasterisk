@@ -39,7 +39,10 @@ def home():
     return render_template('index.html')
 
 
-@app.route('/party')
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
