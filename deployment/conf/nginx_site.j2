@@ -28,7 +28,7 @@ server {
     location /static/ {
         gzip            on;
         autoindex       on;
-        alias           '{{ project_root }}/static/';
+        alias           '{{ project_root }}/';
         access_log      off;
         log_not_found   off;
         expires 30d;
@@ -36,7 +36,7 @@ server {
 
     location /uploads/ {
         autoindex on;
-        alias           '{{ project_root }}/uploads/';
+        alias           '{{ project_root }}/';
         access_log      off;
         log_not_found   off;
     }
