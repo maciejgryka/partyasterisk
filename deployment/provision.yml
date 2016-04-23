@@ -1,7 +1,7 @@
 ---
 - hosts: '{{ hosts }}'
-  user: root
-  # user: '{{ admin_user }}'
+  # user: root
+  user: '{{ admin_user }}'
   vars_files:
     - vars.yml
   gather_facts: false
@@ -22,7 +22,7 @@
           group={{ admin_group }} uid=1000 shell=/bin/bash
 
   - name: create app user {{ project_name }}
-    user: 'home=/home/{{ project_name }}' name='{{ project_name }}' state=present
+    user: home='/home/{{ project_name }}' name='{{ project_name }}' state=present
           group=webapps uid=1001 system=yes shell=/bin/bash
           generate_ssh_key=no
 
@@ -114,6 +114,10 @@
   - name: add github.com key to global known_hosts
     shell: ssh-keyscan -H github.com > /etc/ssh/ssh_known_hosts
            creates=/etc/ssh/ssh_known_hosts
+
+  - name: clone letsencrypt repo
+    git: repo=https://github.com/letsencrypt/letsencrypt
+         dest=/opt/letsencrypt
 
 - hosts: '{{ hosts }}'
   user: '{{ project_name }}'

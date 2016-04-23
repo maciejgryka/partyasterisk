@@ -56,6 +56,8 @@ system_packages:
   - libagg-dev
   - pkg-config
   - libbz2-dev
+  - git
+  - bc
 
 
 initfiles:

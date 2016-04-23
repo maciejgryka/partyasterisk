@@ -50,6 +50,10 @@ server {
 #        expires 30d;
 #    }
 
+    location ~ /.well-known {
+            allow all;
+    }
+
     location / {
         proxy_redirect      off;
         proxy_set_header    Host                    $host;
