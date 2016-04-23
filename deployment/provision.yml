@@ -119,6 +119,8 @@
     git: repo=https://github.com/letsencrypt/letsencrypt
          dest=/opt/letsencrypt
 
+  # TODO: add stuff for generating letsencrypt cert here
+
 - hosts: '{{ hosts }}'
   user: '{{ project_name }}'
   vars_files:
