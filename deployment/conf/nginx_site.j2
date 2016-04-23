@@ -6,15 +6,15 @@ upstream app_server0 {
   server unix:{{ gunicorn_socket }} fail_timeout=0;
 }
 
-server {
-    listen 80;
-    server_name {{ redirect_domains }};
-    return 302 http://{{ domain }};
-}
+# server {
+#     listen 80;
+#     server_name {{ redirect_domains }};
+#     return 302 http://{{ domain }};
+# }
 
 server {
     listen 80;
-    server_name {{ domain }};
+    server_name {{ domain }} www.{{ domain }};
 
 #    ssl                  on;
 #    ssl_certificate      /etc/ssl/localcerts/.com.crt;
