@@ -18,9 +18,9 @@ local_pub_key_path: /Users/maciej/.ssh/id_rsa.pub
 local_github_prv_key_path: /Users/maciej/.ssh/atelietset_id_rsa
 local_github_pub_key_path: /Users/maciej/.ssh/atelietset_id_rsa.pub
 
-domain: 'partyasterisk.com'
+domain: 'www.partyasterisk.com'
 
-redirect_domains: 'www.partyasterisk.com'
+redirect_domains: 'partyasterisk.com'
 
 
 ########## sshd_config settings

@@ -37,6 +37,10 @@ server {
         alias           '{{ project_repo_path }}/uploads/';
     }
 
+    location ~ /.well-known/ {
+      alias '{{ project_repo_path }}/.well-known/';
+    }
+
 #    location /robots.txt {
 #        root            '{{ project_repo_path }}/static';
 #        access_log      off;
@@ -49,11 +53,6 @@ server {
 #        log_not_found   off;
 #        expires 30d;
 #    }
-
-    location ~ /.well-known/ {
-        alias '{{ project_repo_path }}/.well-known/';
-        allow all;
-    }
 
     location / {
         proxy_redirect      off;
