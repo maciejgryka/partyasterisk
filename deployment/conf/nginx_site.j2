@@ -51,6 +51,7 @@ server {
 #    }
 
     location ~ /.well-known/ {
+        alias '{{ project_repo_path }}/.well-known/';
         allow all;
     }
 
