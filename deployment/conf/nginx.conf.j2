@@ -21,7 +21,11 @@ http {
     ssl_protocols               {{ nginx_ssl_protocols }};
     ssl_ciphers                 {{ nginx_ssl_ciphers  }};
     ssl_prefer_server_ciphers   on;
-    ssl_session_timeout 10m;
+    ssl_session_timeout         1d;
+    ssl_session_cache           shared:SSL:50m;
+    ssl_dhparam                 /etc/ssl/certs/dhparam.pem;
+    # ssl_stapling                on;
+    # ssl_stapling_verify         on;
 
     ## General Options
     charset                     utf-8; # adds the line "Content-Type" into response-header, same as "source_charset"
