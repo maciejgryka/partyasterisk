@@ -50,8 +50,8 @@ server {
 #        expires 30d;
 #    }
 
-    location ~ /.well-known {
-            allow all;
+    location ~ /.well-known/ {
+        allow all;
     }
 
     location / {
