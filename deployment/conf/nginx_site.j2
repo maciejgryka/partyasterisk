@@ -14,7 +14,7 @@ upstream app_server0 {
 
 server {
     listen 80;
-    server_name {{ domain }} www.{{ domain }};
+    server_name {{ domain }} {{ redirect_domains }};
 
 #    ssl                  on;
 #    ssl_certificate      /etc/ssl/localcerts/.com.crt;
