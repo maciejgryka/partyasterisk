@@ -37,8 +37,8 @@ server {
         alias           '{{ project_repo_path }}/uploads/';
     }
 
-    location ~ /.well-known/ {
-      alias '{{ project_repo_path }}/.well-known/';
+    location /.well-known/ {
+        alias           '{{ project_repo_path }}/.well-known/';
     }
 
 #    location /robots.txt {
