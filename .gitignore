@@ -11,4 +11,5 @@ uploads/*.gif
 .env
 *.pyc
 *.pkl
+*.retry
 out.gif
