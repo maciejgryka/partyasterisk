@@ -25,10 +25,10 @@ def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
 
-def resize_and_save_file(fp, path, target_size=(128,128)):
+def resize_and_save_file(fp, path, size=(128,128)):
     """Take a file object `fp` and save it as an image inder `path`."""
     img = PIL.Image.open(StringIO(fp.read()))
-    img = img.resize(target_size, resample=PIL.Image.LANCZOS)
+    img.thumbnail(size, PIL.Image.ANTIALIAS)
     img.save(path)
 
 
