@@ -50,12 +50,12 @@ server {
 #        log_not_found   off;
 #    }
 
-#    location /favicon.ico {
-#        root            '{{ project_repo_path }}/static/img';
-#        access_log      off;
-#        log_not_found   off;
-#        expires 30d;
-#    }
+    location /favicon.ico {
+        root            '{{ project_repo_path }}/static';
+        access_log      off;
+        log_not_found   off;
+        expires 30d;
+    }
 
     location / {
         proxy_redirect      off;
