@@ -15,7 +15,14 @@ upstream app_server0 {
 server {
     listen 80;
     server_name {{ domain }} {{ redirect_domains }};
-    return 301 https://{{ domain }};
+
+    location /.well-known/ {
+        alias           '{{ project_repo_path }}/.well-known/';
+    }
+
+    location / {
+      return 301 https://{{ domain }};
+    }
 }
 
 server {
@@ -38,10 +45,6 @@ server {
     location /uploads/ {
         autoindex on;
         alias           '{{ project_repo_path }}/uploads/';
-    }
-
-    location /.well-known/ {
-        alias           '{{ project_repo_path }}/.well-known/';
     }
 
 #    location /robots.txt {
