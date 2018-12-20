@@ -1,5 +1,0 @@
-[program:{{ project_name }}_gunicorn]
-command = {{ project_venv }}/bin/gunicorn_start
-user = {{ project_name }}
-redirect_stderr = true
-environment = PYTHONPATH="{{ project_repo_path }}",SECRET_KEY="{{ lookup('env', 'SECRET_KEY')}}",AWS_ACCESS_KEY_ID="{{ lookup('env', 'AWS_ACCESS_KEY_ID') }}",AWS_SECRET_ACCESS_KEY="{{ lookup('env', 'AWS_SECRET_ACCESS_KEY') }}"
