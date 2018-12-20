@@ -37,9 +37,10 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean
 
 # set up the app
-RUN mkdir /app
+RUN mkdir -p /app/uploads
 WORKDIR /app
 RUN chmod -R 777 /app
+RUN chmod -R 777 /app/uploads
 
 # set up the user
 RUN useradd -m partyuser
@@ -68,6 +69,6 @@ RUN pyenv rehash
 
 ADD . /app
 
+
 EXPOSE 5000
 CMD ["gunicorn", "partyasterisk:app"]
-# CMD bash

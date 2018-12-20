@@ -11,6 +11,7 @@ numpy = "*"
 scikit-image = "*"
 Flask = "*"
 Pillow = "*"
+imageio = "*"
 
 [requires]
 python_version = "3.7"
