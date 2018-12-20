@@ -6,9 +6,9 @@ import skimage.transform
 from imageio import mimwrite
 
 
-OFFSET_MULTIPLIER = 5
-OFFSET_STEP = np.pi / 4
-FPS = 20
+OFFSET_MULTIPLIER = 7
+OFFSET_STEP = np.pi / 3
+FPS = 13
 
 
 def transform(img, emphasize_channel, offset_x=0, offset_y=0):
