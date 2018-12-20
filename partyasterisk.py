@@ -1,10 +1,8 @@
-from __future__ import print_function
-
 import os
 from uuid import uuid4
 from io import StringIO
 
-import PIL
+from PIL import Image
 import matplotlib.pyplot as plt
 from flask import (
     Flask,
@@ -26,7 +24,7 @@ ALLOWED_EXTENSIONS = set(["png", "jpg", "jpeg"])
 
 app = Flask(__name__)
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
-# app.config['MAX_CONTENT_LENGTH'] = 1 * 1024 * 1024
+app.config["MAX_CONTENT_LENGTH"] = 1 * 1024 * 1024
 
 
 def allowed_file(filename):
@@ -35,8 +33,8 @@ def allowed_file(filename):
 
 def resize_and_save_file(fp, path, size=(128, 128)):
     """Take a file object `fp` and save it as an image inder `path`."""
-    img = PIL.Image.open(fp)
-    img.thumbnail(size, PIL.Image.ANTIALIAS)
+    img = Image.open(fp)
+    img.thumbnail(size, Image.ANTIALIAS)
     img.save(path)
 
 
@@ -49,12 +47,8 @@ def home():
             filepath = os.path.join(app.config["UPLOAD_FOLDER"], filename)
             resize_and_save_file(file, filepath)
             out_path = str(uuid4()) + ".gif"
-            # with open(
-            #     os.path.join(app.config["UPLOAD_FOLDER"], out_path), "wb"
-            # ) as out_file:
             img = plt.imread(filepath)
             throw_party(out_path, img)
-            # return redirect(url_for("uploaded_file", filename=out_path))
             return redirect(url_for("party", filename=out_path))
 
     return render_template("index.html")
