@@ -46,6 +46,11 @@
         width: 80%;
         max-width: 600px;
       }
+
+      .steps img {
+        width: 200px;
+        margin: 0 75px;
+      }
     </style>
   </head>
   <body>
@@ -60,6 +65,10 @@
         <input id="input-file" type="file" name="file" />
         <input class="btn" type="submit" value="Go party!" />
       </form>
+      <div class="steps">
+        <img src="{{ url_for('static', filename='step1.png') }}" alt="step 1" />
+        <img src="/static/step2.png" alt="step 2" />
+      </div>
     {% endblock content %}
   </body>
 </html>
