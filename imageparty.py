@@ -21,7 +21,7 @@ def transform(img, emphasize_channel, offset_x=0, offset_y=0):
     return (new_img * 255).astype("uint8")
 
 
-def throw_party(out_file, img):
+def throw_party(img, out_file):
     """Make `img` party and save under `out_file`."""
 
     offsets_x = OFFSET_MULTIPLIER * np.sin(np.arange(-np.pi, np.pi, OFFSET_STEP))

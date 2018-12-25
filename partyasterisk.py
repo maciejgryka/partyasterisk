@@ -2,6 +2,7 @@ import os
 from uuid import uuid4
 from io import StringIO
 
+import numpy as np
 from PIL import Image
 import matplotlib.pyplot as plt
 from flask import (
@@ -31,32 +32,31 @@ def allowed_file(filename):
     return "." in filename and filename.rsplit(".", 1)[1] in ALLOWED_EXTENSIONS
 
 
-def resize_and_save_file(fp, path, size=(128, 128)):
-    """Take a file object `fp` and save it as an image inder `path`."""
+def resize(fp, size=(128, 128)):
+    """Take an image file object and return a version of it resized to `size` as np.array."""
     img = Image.open(fp)
     img.thumbnail(size, Image.ANTIALIAS)
-    img.save(path)
+    return np.array(img)
 
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/")
 def home():
-    if request.method == "POST":
-        file = request.files["file"]
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            filepath = os.path.join(app.config["UPLOAD_FOLDER"], filename)
-            resize_and_save_file(file, filepath)
-            out_path = str(uuid4()) + ".gif"
-            img = plt.imread(filepath)
-            throw_party(out_path, img)
-            return redirect(url_for("party", filename=out_path))
-
     return render_template("index.html")
 
 
 @app.route("/about")
 def about():
     return render_template("about.html")
+
+
+@app.route("/party", methods=["POST"])
+def party_post():
+    file = request.files["file"]
+    if file and allowed_file(file.filename):
+        img = resize(file)
+        out_path = str(uuid4()) + ".gif"
+        throw_party(img, out_path)
+        return redirect(url_for("party", filename=out_path))
 
 
 @app.route("/party/<filename>")
@@ -69,13 +69,3 @@ def party(filename):
 @app.route("/uploads/<filename>")
 def uploaded_file(filename):
     return send_from_directory(app.config["UPLOAD_FOLDER"], filename)
-
-
-@app.route("/slack/command", methods=["POST", "HEAD", "OPTIONS"])
-def slack_command():
-    r = request.json
-    return jsonify({"text": "yup"})
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
