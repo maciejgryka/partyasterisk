@@ -2,17 +2,18 @@ version: 2
 jobs:
   build:
     docker:
-      - image: buildpack-deps:trusty
+      - image: buildpack-deps:bionic
     steps:
       - checkout
-      - setup_remote_docker
+      - setup_remote_docker:
+          docker_layer_caching: true
       - run:
           name: build Docker image
           command: docker build . -t partyasterisk:$CIRCLE_BUILD_NUM
 
   deploy:
     docker:
-      - image: buildpack-deps:trusty
+      - image: buildpack-deps:bionic
     steps:
       - checkout
       - setup_remote_docker
