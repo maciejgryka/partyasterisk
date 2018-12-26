@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: buildpack-deps:bionic
+      - image: docker:18.09.0-ce-git
     steps:
       - checkout
       - setup_remote_docker:
@@ -13,7 +13,7 @@ jobs:
 
   deploy:
     docker:
-      - image: buildpack-deps:bionic
+      - image: docker:18.09.0-ce-git
     steps:
       - checkout
       - setup_remote_docker
