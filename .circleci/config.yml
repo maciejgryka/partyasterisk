@@ -6,8 +6,8 @@ jobs:
     steps:
       - checkout
       - run:
-        name: build Docker image
-        command: docker build . -t partyasterisk:$CIRCLE_BUILD_NUM
+          name: build Docker image
+          command: docker build . -t partyasterisk:$CIRCLE_BUILD_NUM
 
   deploy:
     docker:
@@ -15,11 +15,11 @@ jobs:
     steps:
       - checkout
       - run:
-        name: push the image to the registry and relese
-        command: |
-          heroku container:login
-          heroku container:push web -a $HEROKU_APP_NAME
-          heroku container:release web -a $HEROKU_APP_NAME
+         name: push the image to the registry and relese
+         command: |
+           heroku container:login
+           heroku container:push web -a $HEROKU_APP_NAME
+           heroku container:release web -a $HEROKU_APP_NAME
 
 workflows:
   version: 2
