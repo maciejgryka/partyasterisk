@@ -5,6 +5,7 @@ jobs:
       - image: buildpack-deps:trusty
     steps:
       - checkout
+      - setup_remote_docker
       - run:
           name: build Docker image
           command: docker build . -t partyasterisk:$CIRCLE_BUILD_NUM
@@ -14,6 +15,7 @@ jobs:
       - image: buildpack-deps:trusty
     steps:
       - checkout
+      - setup_remote_docker
       - run:
          name: push the image to the registry and relese
          command: |
