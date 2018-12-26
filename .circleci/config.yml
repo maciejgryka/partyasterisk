@@ -21,7 +21,7 @@ jobs:
       - run:
           name: install Heroku CLI
           command: |
-            apt install curl
+            apk install curl
             curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
       - run:
          name: push the image to the registry and relese
