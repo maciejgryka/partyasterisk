@@ -24,7 +24,11 @@ jobs:
       - image: buildpack-deps:bionic
     steps:
       - checkout
-      - setup_remote_docker
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: install Heroku CLI
+          command: sudo snap install --classic heroku
       - run:
          name: push the image to the registry and relese
          command: |
