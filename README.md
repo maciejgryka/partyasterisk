@@ -7,11 +7,3 @@ Check out [http://cultofthepartyparrot.com/](http://cultofthepartyparrot.com/). 
 ```bash
 docker build . -t partyasterisk && docker run --rm -it -p 5000:5000 partyasterisk gunicorn -b 0.0.0.0:5000 partyasterisk:app
 ```
-
-## Releasing
-
-```bash
-heroku container:login
-heroku container:push web
-heroku container:release web
-```

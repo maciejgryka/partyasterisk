@@ -6,29 +6,20 @@ ENV LANG C.UTF-8
 
 # install system dependencies
 RUN apt-get update && apt-get install -y \
-#     awscli \
     curl \
     build-essential \
-#     ffmpeg \
     git \
-#     golang \
     libbz2-dev \
-#     libjpeg-turbo8-dev \
     libncurses5-dev \
     libncursesw5-dev \
     libffi-dev \
     liblzma-dev \
     libreadline-dev \
     libsqlite3-dev \
-#     libsm6 \
     libssl-dev \
-#     libxext6 \
-#     libxrender-dev \
     llvm \
     make \
     python-openssl \
-#     python3 \
-#     python3-pip \
     python3-dev \
     tk-dev \
     wget \
@@ -37,10 +28,8 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean
 
 # set up the app
-RUN mkdir -p /app/uploads
 WORKDIR /app
 RUN chmod -R 777 /app
-RUN chmod -R 777 /app/uploads
 
 # set up the user
 RUN useradd -m partyuser
@@ -53,8 +42,6 @@ ENV PYENV_ROOT $HOME/.pyenv
 ENV PATH $PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH
 # build optimized python
 ENV CFLAGS -O2
-# make sure pyenv python can use python3-dev
-ENV PYTHON_CONFIGURE_OPTS --enable-shared
 
 RUN pyenv install 3.7.1
 RUN pyenv global 3.7.1
