@@ -21,7 +21,7 @@ jobs:
       - run:
           name: install Heroku CLI
           command: |
-            apk add curl
+            apk add curl bash
             curl https://cli-assets.heroku.com/install.sh | sh
       - run:
          name: push the image to the registry and relese
