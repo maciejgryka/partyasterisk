@@ -56,6 +56,5 @@ RUN pyenv rehash
 
 ADD . /app
 
-
 EXPOSE 5000
 CMD ["gunicorn", "partyasterisk:app"]

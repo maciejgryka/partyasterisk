@@ -1,7 +1,9 @@
+from io import BytesIO
+from base64 import b64encode
+
+import imageio
 import numpy as np
 import skimage.transform
-
-from imageio import mimwrite
 
 
 OFFSET_MULTIPLIER = 7
@@ -21,8 +23,15 @@ def transform(img, emphasize_channel, offset_x=0, offset_y=0):
     return (new_img * 255).astype("uint8")
 
 
-def throw_party(img, out_file):
-    """Make `img` party and save under `out_file`."""
+def throw_party(img):
+    """Make `img` party and return it a Base64 string."""
+    f = BytesIO()
+    f.write(throw_party_in_memory(img))
+    return b64encode(f.getvalue()).decode("utf-8")
+
+
+def throw_party_in_memory(img):
+    """Make `img` party and return it as bytes."""
 
     offsets_x = OFFSET_MULTIPLIER * np.sin(np.arange(-np.pi, np.pi, OFFSET_STEP))
     offsets_y = OFFSET_MULTIPLIER * np.cos(np.arange(-np.pi, np.pi, OFFSET_STEP))
@@ -38,4 +47,4 @@ def throw_party(img, out_file):
         images.append(
             transform(img, emphasize_channel=c, offset_x=offset_x, offset_y=offset_y)
         )
-    mimwrite(out_file, images, fps=FPS)
+    return imageio.mimwrite(imageio.RETURN_BYTES, images, format="gif", fps=FPS)
