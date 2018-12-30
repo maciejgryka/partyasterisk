@@ -28,11 +28,11 @@ app.config["MAX_CONTENT_LENGTH"] = 1 * 1024 * 1024
 app.secret_key = "YnWFsvE5fIERUW7jXdwtFnnFldw"
 
 
-def allowed_file(filename):
+def allowed_file(filename: str):
     return "." in filename and filename.rsplit(".", 1)[1] in ALLOWED_EXTENSIONS
 
 
-def resize(fp, size=(128, 128)):
+def resize(fp, size: tuple = (128, 128)) -> np.array:
     """Take an image file object and return a version of it resized to `size` as np.array."""
     img = Image.open(fp)
     img.thumbnail(size, Image.ANTIALIAS)
@@ -53,6 +53,7 @@ def about():
 def party_post():
     file = request.files["file"]
     if file and allowed_file(file.filename):
+        breakpoint()
         img = resize(file)
         out_path = "data:image/gif;base64, " + throw_party(img)
         return render_template("party.html", img_src=out_path)

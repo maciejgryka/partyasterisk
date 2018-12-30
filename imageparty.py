@@ -11,7 +11,9 @@ OFFSET_STEP = np.pi / 3
 FPS = 13
 
 
-def transform(img, emphasize_channel, offset_x=0, offset_y=0):
+def transform(
+    img: np.array, emphasize_channel: int, offset_x: int = 0, offset_y: int = 0
+) -> np.array:
     mask = np.ones(img.shape)
     mask[:, :, emphasize_channel] *= 1.5
     new_img = img * mask
@@ -23,14 +25,14 @@ def transform(img, emphasize_channel, offset_x=0, offset_y=0):
     return (new_img * 255).astype("uint8")
 
 
-def throw_party(img):
+def throw_party(img: np.array) -> str:
     """Make `img` party and return it a Base64 string."""
     f = BytesIO()
     f.write(throw_party_in_memory(img))
     return b64encode(f.getvalue()).decode("utf-8")
 
 
-def throw_party_in_memory(img):
+def throw_party_in_memory(img: np.array) -> bytes:
     """Make `img` party and return it as bytes."""
 
     offsets_x = OFFSET_MULTIPLIER * np.sin(np.arange(-np.pi, np.pi, OFFSET_STEP))
