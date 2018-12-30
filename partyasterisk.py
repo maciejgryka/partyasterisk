@@ -53,7 +53,6 @@ def about():
 def party_post():
     file = request.files["file"]
     if file and allowed_file(file.filename):
-        breakpoint()
         img = resize(file)
         out_path = "data:image/gif;base64, " + throw_party(img)
         return render_template("party.html", img_src=out_path)
