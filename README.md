@@ -5,5 +5,5 @@ Check out [http://cultofthepartyparrot.com/](http://cultofthepartyparrot.com/). 
 ## Running locally
 
 ```bash
-docker build . -t partyasterisk && docker run --rm -it -p 5000:5000 partyasterisk gunicorn -b 0.0.0.0:5000 partyasterisk:app
+docker build . -t partyasterisk && docker run --rm -it -p 5000:5000 --env DEBUG=1 partyasterisk gunicorn -b 0.0.0.0:5000 partyasterisk:app
 ```
